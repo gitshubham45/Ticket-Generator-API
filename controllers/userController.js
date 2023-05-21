@@ -23,7 +23,6 @@ const registerUser = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        console.log(hashedPassword);
 
         const newUser = new User({ username, password: hashedPassword });
         await newUser.save();
@@ -41,7 +40,6 @@ const loginUser = async (req, res) => {
         const user = await User.findOne({ username });
 
         if (user) {
-            // Generate JWT token
             if (bcrypt.compare(user.password, password)) {
                 const token = jwt.sign({ username }, jwtSecret, { expiresIn: '1d' });
                 console.log(token);
