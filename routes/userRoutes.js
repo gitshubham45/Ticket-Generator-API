@@ -1,4 +1,5 @@
 const express = require('express');
+const authenticateToken = require('../config/authentication');
 const { registerUser , loginUser } = require('../controllers/userController');
 
 const router = express.Router();
